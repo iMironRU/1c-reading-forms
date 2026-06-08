@@ -1,0 +1,190 @@
+name: Build Books (Universal v4)
+
+on:
+  schedule:
+    - cron: '0 2 * * *'   # каждый день в 02:00 UTC (05:00 мск)
+  workflow_dispatch:        # ручной запуск из GitHub → Actions
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Generate build info
+        id: build_info
+        run: |
+          SHA="${GITHUB_SHA::7}"
+          echo "build_date=$(date -u '+%Y-%m-%d %H:%M UTC')" >> $GITHUB_OUTPUT
+          echo "build_num=${{ github.run_number }}"           >> $GITHUB_OUTPUT
+          echo "build_sha=${SHA}"                             >> $GITHUB_OUTPUT
+          echo "slug=1c-forms-reading_rev_${SHA}"          >> $GITHUB_OUTPUT
+
+      # Чтение метаданных (pdf-papersize по умолчанию a5)
+      - name: Read metadata
+        id: meta
+        run: |
+          python3 -c "
+          import yaml, os
+          with open('metadata.yaml', 'r') as f:
+              data = yaml.safe_load(f)
+          title = data.get('title', 'Untitled')
+          author = data.get('author', 'Unknown')
+          lang = data.get('lang', 'en')
+          cover = data.get('cover-image', '')
+          toc_depth = data.get('toc-depth', 2)
+          papersize = data.get('pdf-papersize', 'a5')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write(f'title={title}\n')
+              f.write(f'author={author}\n')
+              f.write(f'lang={lang}\n')
+              f.write(f'cover={cover}\n')
+              f.write(f'toc_depth={toc_depth}\n')
+              f.write(f'papersize={papersize}\n')
+          "
+        shell: bash
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-xetex texlive-latex-extra fonts-dejavu
+          pip install python-docx
+
+      - name: Assemble book from chapters/*/
+        run: |
+          mkdir -p output
+          > book.md
+          if [ ! -d "chapters" ]; then
+            echo "ERROR: 'chapters/' directory not found!"
+            exit 1
+          fi
+
+          for chapter_dir in $(ls -d chapters/*/ | sort); do
+            echo "Processing: $chapter_dir"
+            chapter_name=$(basename "$chapter_dir" | sed 's/^[0-9]*_//; s/_/ /g')
+            echo "# $chapter_name" >> book.md
+            echo "" >> book.md
+            find "$chapter_dir" -maxdepth 1 -name "*.md" -type f | sort | while read f; do
+              echo "  Adding $f"
+              cat "$f" >> book.md
+              echo -e "\n\n" >> book.md
+            done
+          done
+
+      # EPUB
+      - name: Build EPUB
+        run: |
+          SLUG="${{ steps.build_info.outputs.slug }}"
+          COVER_OPTION=""
+          if [ -n "${{ steps.meta.outputs.cover }}" ] && [ -f "${{ steps.meta.outputs.cover }}" ]; then
+            COVER_OPTION="--epub-cover-image=${{ steps.meta.outputs.cover }}"
+          fi
+          pandoc book.md \
+            --from markdown \
+            --to epub3 \
+            --metadata title="${{ steps.meta.outputs.title }}" \
+            --metadata author="${{ steps.meta.outputs.author }}" \
+            --metadata lang="${{ steps.meta.outputs.lang }}" \
+            --metadata date="Сборка №${{ steps.build_info.outputs.build_num }} · ${{ steps.build_info.outputs.build_date }} · ${{ steps.build_info.outputs.build_sha }}" \
+            $COVER_OPTION \
+            --toc --toc-depth=${{ steps.meta.outputs.toc_depth }} \
+            -o output/${SLUG}.epub
+
+      # FB2
+      - name: Build FB2
+        run: |
+          SLUG="${{ steps.build_info.outputs.slug }}"
+          pandoc book.md \
+            --to fb2 \
+            --metadata title="${{ steps.meta.outputs.title }}" \
+            --metadata author="${{ steps.meta.outputs.author }}" \
+            --metadata lang="${{ steps.meta.outputs.lang }}" \
+            --metadata cover-image="${{ steps.meta.outputs.cover }}" \
+            --metadata date="Сборка №${{ steps.build_info.outputs.build_num }} · ${{ steps.build_info.outputs.build_date }} · ${{ steps.build_info.outputs.build_sha }}" \
+            --toc --toc-depth=${{ steps.meta.outputs.toc_depth }} \
+            -o output/${SLUG}.fb2
+
+      # PDF (размер из metadata.yaml, по умолчанию A5)
+      - name: Build PDF
+        run: |
+          SLUG="${{ steps.build_info.outputs.slug }}"
+          pandoc book.md \
+            --metadata title="${{ steps.meta.outputs.title }}" \
+            --metadata author="${{ steps.meta.outputs.author }}" \
+            --metadata lang="${{ steps.meta.outputs.lang }}" \
+            --metadata date="Сборка №${{ steps.build_info.outputs.build_num }} · ${{ steps.build_info.outputs.build_date }} · ${{ steps.build_info.outputs.build_sha }}" \
+            --pdf-engine=xelatex \
+            -V papersize=${{ steps.meta.outputs.papersize }} \
+            -V mainfont="DejaVu Serif" \
+            -V sansfont="DejaVu Sans" \
+            -V monofont="DejaVu Sans Mono" \
+            -o output/${SLUG}.pdf
+
+      # HTML
+      - name: Build HTML
+        run: |
+          SLUG="${{ steps.build_info.outputs.slug }}"
+          pandoc book.md \
+            --metadata title="${{ steps.meta.outputs.title }}" \
+            --metadata author="${{ steps.meta.outputs.author }}" \
+            --metadata lang="${{ steps.meta.outputs.lang }}" \
+            --metadata date="Сборка №${{ steps.build_info.outputs.build_num }} · ${{ steps.build_info.outputs.build_date }} · ${{ steps.build_info.outputs.build_sha }}" \
+            --self-contained \
+            -o output/${SLUG}.html
+
+      # DOCX: два файла — стандартный + A4 (поля 25/20 мм, страница 210×297 мм)
+      - name: Build DOCX
+        env:
+          SLUG: ${{ steps.build_info.outputs.slug }}
+          BUILD_META: "Сборка №${{ steps.build_info.outputs.build_num }} · ${{ steps.build_info.outputs.build_date }} · ${{ steps.build_info.outputs.build_sha }}"
+        run: |
+          # Стандартный DOCX (pandoc defaults)
+          pandoc book.md \
+            --metadata title="${{ steps.meta.outputs.title }}" \
+            --metadata author="${{ steps.meta.outputs.author }}" \
+            --metadata lang="${{ steps.meta.outputs.lang }}" \
+            --metadata date="${BUILD_META}" \
+            -o output/${SLUG}.docx
+
+          # A4 DOCX: копируем базовый и меняем размер страницы через python-docx
+          python3 -c "
+          import os
+          from docx import Document
+          from docx.shared import Mm
+          slug = os.environ['SLUG']
+          doc = Document('output/' + slug + '.docx')
+          for section in doc.sections:
+              section.page_width    = Mm(210)
+              section.page_height   = Mm(297)
+              section.top_margin    = Mm(20)
+              section.bottom_margin = Mm(20)
+              section.left_margin   = Mm(25)
+              section.right_margin  = Mm(25)
+          doc.save('output/' + slug + '_a4.docx')
+          print('Saved: output/' + slug + '_a4.docx')
+          "
+
+      - name: Create Draft Release
+        uses: softprops/action-gh-release@v3
+        with:
+          name: "Черновик №${{ steps.build_info.outputs.build_num }}: ${{ steps.meta.outputs.title }}"
+          tag_name: draft-${{ github.run_id }}
+          draft: true
+          body: |
+            **rev.** `${{ steps.build_info.outputs.build_sha }}`  ·  **сборка** ${{ steps.build_info.outputs.build_date }}
+
+            | Файл | Описание |
+            |------|----------|
+            | `..._rev_${{ steps.build_info.outputs.build_sha }}.epub` | EPUB (читалки) |
+            | `..._rev_${{ steps.build_info.outputs.build_sha }}.fb2`  | FB2 (читалки) |
+            | `..._rev_${{ steps.build_info.outputs.build_sha }}.pdf`  | PDF (${{ steps.meta.outputs.papersize }}) |
+            | `..._rev_${{ steps.build_info.outputs.build_sha }}.html` | HTML (один файл) |
+            | `..._rev_${{ steps.build_info.outputs.build_sha }}.docx` | DOCX (стандарт pandoc) |
+            | `..._rev_${{ steps.build_info.outputs.build_sha }}_a4.docx` | DOCX A4 (поля 25/20 мм) |
+          files: output/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
