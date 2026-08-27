@@ -31,7 +31,7 @@ formats:
   html:       true    # HTML — один самодостаточный файл
   docx:       true    # DOCX стандарт
   docx_a4:    false   # DOCX A4 с полями под печать
-  site:       true    # Сайт на GitHub Pages (mdBook)
+  site:       false    # книга ещё не дописана — сайт не публикуем
 
 # Фильтр статуса для сборки:
 #   ready   — только главы со статусом ready
