@@ -116,12 +116,12 @@ CLAUDE.md                    — рабочие соглашения для ра
 
 | Файл | Описание |
 |------|----------|
-| `1c-forms-reading_rev_XXXXXXX.epub` | EPUB для читалок |
-| `1c-forms-reading_rev_XXXXXXX.fb2`  | FB2 для читалок |
-| `1c-forms-reading_rev_XXXXXXX.pdf`  | PDF (A5, размер из metadata.yaml) |
-| `1c-forms-reading_rev_XXXXXXX.html` | HTML — один самодостаточный файл |
-| `1c-forms-reading_rev_XXXXXXX.docx` | DOCX стандарт |
-| `1c-forms-reading_rev_XXXXXXX_a4.docx` | DOCX A4 (210×297 мм, поля 25/20 мм) |
+| `1c-reading-forms_rev_XXXXXXX.epub` | EPUB для читалок |
+| `1c-reading-forms_rev_XXXXXXX.fb2`  | FB2 для читалок |
+| `1c-reading-forms_rev_XXXXXXX.pdf`  | PDF (A5, размер из metadata.yaml) |
+| `1c-reading-forms_rev_XXXXXXX.html` | HTML — один самодостаточный файл |
+| `1c-reading-forms_rev_XXXXXXX.docx` | DOCX стандарт |
+| `1c-reading-forms_rev_XXXXXXX_a4.docx` | DOCX A4 (210×297 мм, поля 25/20 мм) |
 
 Готовые файлы появляются в разделе **Releases** как черновые выпуски.
 

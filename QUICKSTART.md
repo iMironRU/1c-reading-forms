@@ -7,8 +7,8 @@
 ## 1. Распаковка
 
 ```bash
-unzip 1c-forms-reading.zip
-cd 1c-forms-reading
+unzip 1c-reading-forms.zip
+cd 1c-reading-forms
 ```
 
 Внутри уже инициализирован git с первым коммитом «Initial project skeleton». Не нужно делать `git init` заново.
@@ -16,9 +16,9 @@ cd 1c-forms-reading
 ## 2. Создание репозитория на GitHub
 
 ```bash
-# Создай пустой репозиторий на GitHub: 1c-forms-reading
+# Создай пустой репозиторий на GitHub: 1c-reading-forms
 # Затем:
-git remote add origin git@github.com:iMironRU/1c-forms-reading.git
+git remote add origin git@github.com:iMironRU/1c-reading-forms.git
 git branch -M main
 git push -u origin main
 ```
@@ -28,9 +28,9 @@ git push -u origin main
 В `mkdocs.yml` сейчас закомментированы строки с `site_url`, `repo_url`, `repo_name`, `edit_uri`. Раскомментируй их после создания репозитория на GitHub:
 
 ```yaml
-site_url: https://imironru.github.io/1c-forms-reading/
-repo_url: https://github.com/iMironRU/1c-forms-reading
-repo_name: iMironRU/1c-forms-reading
+site_url: https://imironru.github.io/1c-reading-forms/
+repo_url: https://github.com/iMironRU/1c-reading-forms
+repo_name: iMironRU/1c-reading-forms
 edit_uri: edit/main/chapters/
 ```
 
@@ -80,7 +80,7 @@ GitHub → Actions → Build Books → Run workflow
 ## Структура проекта (напоминание)
 
 ```
-1c-forms-reading/
+1c-reading-forms/
 ├── README.md              — публичное описание
 ├── CLAUDE.md              — рабочие соглашения (для Claude Code)
 ├── QUICKSTART.md          — этот файл
