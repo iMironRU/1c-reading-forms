@@ -3,6 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!host) return;
     var b = document.createElement('div');
     b.className = 'book-status book-status--wip';
-    b.textContent = "Книга пишется: 0 из 3 параграфов прошли вычитку. Черновики открыты нарочно — их можно читать, но они ещё изменятся.";
+    b.textContent = "Книга пишется: 0 из 4 параграфов прошли вычитку. Черновики открыты нарочно — их можно читать, но они ещё изменятся.";
     host.insertBefore(b, host.firstChild);
 });
