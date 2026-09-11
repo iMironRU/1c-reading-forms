@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://imironru.github.io/BSLexicon/schemas/tasks-v1.json",
+  "title": "BSLexicon judge tasks.json",
+  "description": "Схема ассета tasks.json, публикуемого книгой как GitHub Release asset. BSLexicon скачивает его на build-этапе и рендерит задачи в разделе /judge/. Валидация должна проходить на стороне книги ПЕРЕД релизом (fail-loud) и повторно на стороне BSLexicon (fail-loud CI).",
+  "type": "object",
+  "required": ["version", "book", "tasks"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "description": "Мажорная версия формата. При breaking-changes бампаем; BSLexicon отказывается грузить неподдерживаемую версию.",
+      "const": 1
+    },
+    "book": {
+      "description": "Метаданные книги — из которой пришёл этот выпуск задач.",
+      "type": "object",
+      "required": ["id", "title", "version", "repo"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Стабильный slug книги. Совпадает с ключом в BSLexicon books-registry (catalog/books.yaml). Не меняется даже при переименовании репо.",
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "title": {
+          "description": "Человекочитаемое название книги.",
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "description": "SemVer версии книги. Задачи из версии X.Y.Z переживают минорные обновления книги и считаются совместимыми в рамках одной мажорной версии.",
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+"
+        },
+        "repo": {
+          "description": "owner/repo книги на GitHub — для собственно доступа к release-у.",
+          "type": "string",
+          "pattern": "^[\\w.-]+/[\\w.-]+$"
+        },
+        "site": {
+          "description": "Публичный URL книги (mdBook или иной сайт) — используется для deep-link'ов «Прочитать разбор в книге».",
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/task" }
+    }
+  },
+  "$defs": {
+    "task": {
+      "type": "object",
+      "required": ["id", "title", "chapter", "statement", "starter", "tests"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Уникальный slug задачи в пределах книги. Обязан быть стабильным: BSLexicon хранит прогресс читателя по `<book.id>:<task.id>`.",
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "title": {
+          "description": "Короткое человекочитаемое название. До ~60 символов.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "chapter": {
+          "description": "Идентификатор главы книги, к которой относится задача. Формат — по правилам книги (у 1c-reading-code: `01-первая-программа`).",
+          "type": "string",
+          "minLength": 1
+        },
+        "section": {
+          "description": "Опциональный номер параграфа (§ N.M) — для группировки задач одной главы.",
+          "type": "string"
+        },
+        "book_url": {
+          "description": "Deep-link на разбор задачи в книге. Формируется как `<book.site>/<chapter>#<anchor>`. Показывается пользователю кнопкой «📖 Разбор в книге».",
+          "type": "string",
+          "format": "uri"
+        },
+        "statement": {
+          "description": "Условие задачи в plain-текст-markdown (без HTML, без произвольных macro). Что нужно сделать, входные и выходные условия.",
+          "type": "string",
+          "minLength": 1
+        },
+        "starter": {
+          "description": "Стартовый код в редакторе. Обычно скелет функции с TODO. UTF-8, кириллица.",
+          "type": "string"
+        },
+        "tests": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/test" }
+        },
+        "hints": {
+          "description": "Подсказки в порядке появления — раскрываются по клику «Показать подсказку». Каждая — plain text.",
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "difficulty": {
+          "description": "Ориентировочная сложность. Для сортировки в UI и статистики.",
+          "enum": ["intro", "easy", "medium", "hard"]
+        },
+        "tags": {
+          "description": "Теги для фильтра (\"строки\", \"цикл\", \"массив\").",
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    },
+    "test": {
+      "description": "Один чек-поинт задачи. Ровно один из режимов: 'stdout' (проверка вывода Сообщить) либо 'call' (вызов функции с ожидаемым результатом).",
+      "oneOf": [
+        { "$ref": "#/$defs/testStdout" },
+        { "$ref": "#/$defs/testCall" }
+      ]
+    },
+    "testStdout": {
+      "type": "object",
+      "required": ["kind", "expect"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "const": "stdout" },
+        "name": {
+          "description": "Короткая метка теста для UI («Пустой массив», «Один элемент»). Опционально.",
+          "type": "string"
+        },
+        "expect": {
+          "description": "Ожидаемый вывод Сообщить(). Многострочная строка сравнивается построчно.",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Скрытый тест — читатель видит только ✓/✗, но не имя и не expect. Для проверки крайних случаев без спойлеров.",
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "testCall": {
+      "type": "object",
+      "required": ["kind", "invoke", "expect"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "const": "call" },
+        "name": {
+          "description": "Короткая метка теста.",
+          "type": "string"
+        },
+        "invoke": {
+          "description": "Выражение, которое должно вычислиться в expect. Может обращаться к функциям, объявленным в starter/решении читателя.",
+          "type": "string",
+          "minLength": 1
+        },
+        "expect": {
+          "description": "Ожидаемое значение выражения. Литерал BSL: число, строка в кавычках, Истина/Ложь/Неопределено, `Новый Массив(1, 2, 3)`. Сравнение — deep equality.",
+          "type": "string",
+          "minLength": 1
+        },
+        "hidden": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    }
+  }
+}

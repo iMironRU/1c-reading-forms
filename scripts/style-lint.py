@@ -47,6 +47,7 @@ DEFAULT_SEVERITY = {
     "heavy": "warning",
     "wide": "warning",
     "kitchen": "error",
+    "dupnum": "error",  # два файла с одним номером параграфа
     "agree": "warning",     # разметки больше четверти объёма
 }
 
@@ -111,7 +112,7 @@ NOT_VERBS = {"мышь", "рожь", "ложь", "глушь", "фальшь", "
 # однозначны, пустые усиления зависят от контекста («не так очевидно, как
 # кажется» — законная фраза), поэтому у них своя, более мягкая серьёзность.
 # Языки, для которых блок — это код, а не схема из пробелов.
-CODE_LANGS = {"bsl", "python", "javascript", "csharp", "java", "sql",
+CODE_LANGS = {"bsl", "запрос", "python", "javascript", "csharp", "java", "sql",
               "powershell", "bash", "yaml", "ini", "json", "xml"}
 
 PHRASES = {
@@ -270,7 +271,26 @@ def check_file(path, cfg):
 
     # Плотность показа: канон просит один артефакт примерно на 130 слов прозы.
     # Считаем только основной текст — в упражнениях и ответах своя логика.
-    if sev("telling") != "off":
+    # Файл ответов — не параграф: там сплошной разбор, и требовать от него
+    # плотности показов бессмысленно.
+
+    # Два файла с одним номером параграфа — верный признак того, что текст
+    # написали под новым именем, не заметив заготовки. В сборку тогда попадают
+    # оба, и параграф двоится.
+    if sev("dupnum") != "off":
+        import collections as _c
+        seen = _c.defaultdict(list)
+        for other in sorted(glob.glob(os.path.join(os.path.dirname(path), "*.md"))):
+            m = re.match(r"(\d\d-\d\d)_", os.path.basename(other))
+            if m:
+                seen[m.group(1)].append(os.path.basename(other))
+        mine = re.match(r"(\d\d-\d\d)_", os.path.basename(path))
+        if mine and len(seen[mine.group(1)]) > 1:
+            findings.append((sev("dupnum"), path, 1, 1, "dupnum",
+                             "номер параграфа занят дважды: "
+                             + ", ".join(seen[mine.group(1)])))
+
+    if sev("telling") != "off" and not path.endswith("-99_otvety.md"):
         body = re.split(r"^##\s*(?:Контрольные вопросы|Упражнения)", raw, flags=re.M)[0]
         arte = len(re.findall(r"```", body)) // 2
         # Таблица — такой же показ, как блок кода. Считаем блоками, а не
