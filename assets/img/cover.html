@@ -1,0 +1,154 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+  :root{
+    --paper:#E4C68D; --paper2:#EBD3A2; --navy:#16283A; --red:#A02D26; --ink:#12202E;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1024px;height:1536px;overflow:hidden}
+  body{background:var(--paper);font-family:"Arial Narrow",Arial,sans-serif;color:var(--navy);position:relative}
+  .grain{position:absolute;inset:0;opacity:.10;
+    background-image:radial-gradient(#8a6a3a 1px,transparent 1px),radial-gradient(#fff 1px,transparent 1px);
+    background-size:7px 7px,11px 11px;background-position:0 0,3px 5px;pointer-events:none;z-index:5}
+  .spine{position:absolute;left:0;top:0;bottom:0;width:34px;background:linear-gradient(90deg,#0d1a26,#16283A 60%,#0f1d2b);z-index:4}
+  .spine::after{content:"";position:absolute;inset:0;
+    background:repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 1px,transparent 1px 7px)}
+  .page{position:absolute;left:34px;right:0;top:0;bottom:0;padding:34px 40px 0 40px;display:flex;flex-direction:column}
+
+  .rule{background:var(--navy)}
+  .rule.thick{height:9px}
+  .rule.thin{height:4px}
+  .rule.red{background:var(--red);height:5px}
+
+  .author{font-family:Impact,"Arial Narrow",sans-serif;font-size:44px;letter-spacing:.06em;
+    text-align:center;padding:16px 0 14px;color:var(--ink)}
+
+  .title{padding:22px 0 6px}
+  .t-line{font-family:Impact,"Arial Narrow",sans-serif;line-height:.93;letter-spacing:.005em;
+    text-transform:uppercase;white-space:nowrap}
+  .t1{font-size:116px}
+  .t1 .mark{color:var(--red)}
+  .sub{font-family:Impact,"Arial Narrow",sans-serif;color:var(--red);font-size:54px;
+    letter-spacing:.01em;padding-top:18px;text-transform:uppercase}
+  .kicker{font-family:Impact,"Arial Narrow",sans-serif;font-size:36px;letter-spacing:.04em;
+    padding:16px 0 18px;color:var(--ink)}
+
+  .panel{position:relative;flex:1;border:5px solid var(--navy);overflow:hidden;background:var(--navy)}
+  .wedge{position:absolute;inset:0;background:var(--paper2);
+    clip-path:polygon(52% 0,100% 0,100% 100%,42% 100%)}
+  .code{position:absolute;left:0;top:0;width:50%;height:100%;padding:24px 0 0 22px;
+    font-family:Menlo,"Courier New",monospace;font-size:17px;line-height:1.5;color:#E4C68D;white-space:pre}
+  .code .kw{color:#F0B44B;font-weight:bold}
+  .code .cm{color:#7f95a8}
+  .parse{position:absolute;left:22px;bottom:40px;width:36%;color:#E4C68D;
+    font-family:"Arial Narrow",Arial,sans-serif}
+  .parse .h{font-family:Impact,"Arial Narrow",sans-serif;font-size:22px;letter-spacing:.06em;
+    color:#F0B44B;border-bottom:2px solid rgba(228,198,141,.45);padding-bottom:8px;margin-bottom:14px}
+  .parse .row{font-size:19px;line-height:1.3;margin-bottom:16px}
+  .parse .q{display:block;font-family:Impact,"Arial Narrow",sans-serif;color:#9fb3c4;
+    font-size:17px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+
+  .scheme{position:absolute;right:0;top:0;width:47%;height:100%;padding:28px 24px 0 14px;
+    display:flex;flex-direction:column;align-items:center}
+  .box{border:3px solid var(--navy);color:var(--ink);
+    font-family:Impact,"Arial Narrow",sans-serif;font-size:24px;letter-spacing:.03em;
+    padding:12px 10px;text-align:center;width:100%;text-transform:uppercase}
+  .arrow{width:3px;height:26px;background:var(--navy);position:relative;flex:none}
+  .arrow::after{content:"";position:absolute;left:-7px;bottom:-2px;border-left:8px solid transparent;
+    border-right:8px solid transparent;border-top:12px solid var(--navy)}
+
+  /* набросок формы */
+  .win{width:100%;border:3px solid var(--navy);background:#f3e3bf;margin-top:2px}
+  .win .bar{background:var(--navy);color:var(--paper);font-family:Impact,"Arial Narrow",sans-serif;
+    font-size:21px;letter-spacing:.03em;padding:8px 12px}
+  .win .body{padding:12px 12px 14px;font-family:"Arial Narrow",Arial,sans-serif;color:var(--ink)}
+  .btns{display:flex;gap:8px;margin-bottom:14px}
+  .btn{border:2px solid var(--navy);padding:4px 9px;font-size:17px;background:var(--paper2)}
+  .btn.main{background:var(--navy);color:var(--paper)}
+  .fld{display:flex;align-items:center;margin-bottom:9px;font-size:18px}
+  .fld .l{width:122px;flex:none}
+  .fld .v{flex:1;border:2px solid #6f7f8e;background:#fff8e8;padding:3px 7px;font-family:Menlo,"Courier New",monospace;font-size:15px}
+  .grp{margin:12px 0 8px;font-family:Impact,"Arial Narrow",sans-serif;font-size:16px;letter-spacing:.08em;
+    color:#33475b;border-bottom:2px solid #6f7f8e;padding-bottom:3px;text-transform:uppercase}
+  .tags{width:100%;margin-top:16px;border-collapse:collapse;font-family:"Arial Narrow",Arial,sans-serif;color:var(--ink)}
+  .tags th{font-size:16px;text-transform:uppercase;letter-spacing:.06em;border-bottom:3px solid var(--navy);
+    padding:5px 6px;text-align:left}
+  .tags td{font-size:18px;padding:5px 6px;border-bottom:1px solid rgba(22,40,58,.35)}
+  .tags td:first-child{font-family:Impact,"Arial Narrow",sans-serif;letter-spacing:.03em;color:var(--red);font-size:17px;text-transform:uppercase}
+  .cap{font-family:"Arial Narrow",Arial,sans-serif;font-size:18px;color:#33475b;text-align:center;
+    margin-top:auto;margin-bottom:30px;line-height:1.3}
+
+  .bottom{background:var(--navy);margin:0 -40px;padding:18px 0 22px;text-align:center}
+  .bottom .t{font-family:Impact,"Arial Narrow",sans-serif;color:var(--paper);font-size:38px;letter-spacing:.16em}
+  .bottom .s{font-family:"Arial Narrow",Arial,sans-serif;color:#9fb3c4;font-size:22px;letter-spacing:.08em;padding-top:6px}
+</style></head><body>
+<div class="spine"></div>
+<div class="page">
+  <div class="rule thick"></div>
+  <div class="author">МИРОШНИЧЕНКО АЛЕКСАНДР</div>
+  <div class="rule red"></div>
+
+  <div class="title">
+    <div class="t-line t1">ЧТЕНИЕ ФОРМ <span class="mark">1С</span></div>
+    <div class="sub">поверхность системы</div>
+  </div>
+  <div class="rule thin"></div>
+  <div class="kicker">ПОНЯТНО. ПО ШАГАМ. НА ПРАКТИКЕ.</div>
+
+  <div class="panel">
+    <div class="wedge"></div>
+    <div class="code"><span class="cm">// чужая форма</span>
+
+<span class="kw">Форма</span> «ФормаЭлемента»
+│
+├── <span class="kw">Реквизиты</span>
+│   └── Объект  <span class="cm">← основной</span>
+│       СправочникОбъект.Товары
+│
+├── <span class="kw">Элементы</span>
+│   ├── Наименование
+│   ├── Родитель
+│   └── Группа «Учёт»
+│       ├── Артикул
+│       └── Единица
+│
+└── <span class="kw">Команды</span>
+    ├── Записать и закрыть
+    └── Записать</div>
+    <div class="parse">
+      <div class="h">РАЗБОР ПО ТРЁМ ОБЛАСТЯМ</div>
+      <div class="row"><span class="q">О чём</span><span>об одном товаре справочника</span></div>
+      <div class="row"><span class="q">Что видно</span><span>поля, группа, кнопки</span></div>
+      <div class="row"><span class="q">Что можно</span><span>поправить и записать</span></div>
+    </div>
+    <div class="scheme">
+      <div class="box">Форма — разговор об одном</div>
+      <div class="arrow"></div>
+      <div class="win">
+        <div class="bar">Ручка шариковая (Товары)</div>
+        <div class="body">
+          <div class="btns"><span class="btn main">Записать и закрыть</span><span class="btn">Записать</span></div>
+          <div class="fld"><span class="l">Наименование:</span><span class="v">Ручка шариковая</span></div>
+          <div class="fld"><span class="l">Родитель:</span><span class="v">Письменные…</span></div>
+          <div class="grp">Учёт</div>
+          <div class="fld"><span class="l">Артикул:</span><span class="v">РУЧ-01</span></div>
+          <div class="fld"><span class="l">Единица:</span><span class="v">шт</span></div>
+        </div>
+      </div>
+      <table class="tags">
+        <tr><th>в разговоре</th><th>в 1С</th></tr>
+        <tr><td>реплика</td><td>форма</td></tr>
+        <tr><td>предмет</td><td>реквизит формы</td></tr>
+        <tr><td>видимая часть</td><td>элемент</td></tr>
+        <tr><td>глагол</td><td>команда</td></tr>
+      </table>
+      <div class="cap">реквизиты и элементы · композиция<br>списки · команды · командный интерфейс</div>
+    </div>
+  </div>
+
+  <div class="rule red" style="margin:0 -40px"></div>
+  <div class="bottom">
+    <div class="t">ФОРМА КАК РАЗГОВОР</div>
+    <div class="s">ТРЕТЬЯ КНИГА ЛИНИИ «ЧТЕНИЕ 1С»</div>
+  </div>
+</div>
+<div class="grain"></div>
+</body></html>
