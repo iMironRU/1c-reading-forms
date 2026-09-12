@@ -12,3 +12,7 @@
   - [✏️ § 0.7. Два режима форм: управляемые и обычные](chapters/00_vvedenie/00-07_dva_rezhima_form.md)
   - [✏️ § 0.8. Связь с метаданными и с кодом: где здесь дерево, где здесь язык](chapters/00_vvedenie/00-08_derevo_i_kod.md)
   - [✏️ Ответы к части 0](chapters/00_vvedenie/00-99_otvety.md)
+
+- [Глава 1. Формы, которые платформа делает сама]()
+  - [✏️ § 1.1. Автогенерируемая форма: что это и когда срабатывает](chapters/01_avtoformy/01-01_avtogeneriruemaya_forma.md)
+  - [✏️ Ответы к части 1](chapters/01_avtoformy/01-99_otvety.md)
