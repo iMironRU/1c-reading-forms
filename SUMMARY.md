@@ -9,4 +9,5 @@
   - [✏️ § 0.4. Командный интерфейс: оглавление прикладной программы](chapters/00_vvedenie/00-04_komandnyy_interfeys.md)
   - [✏️ § 0.5. Клиент и сервер: пользователь здесь, данные там](chapters/00_vvedenie/00-05_klient_i_server.md)
   - [✏️ § 0.6. Декларативность платформы: не написать действие, а задать правило](chapters/00_vvedenie/00-06_deklarativnost.md)
+  - [✏️ § 0.7. Два режима форм: управляемые и обычные](chapters/00_vvedenie/00-07_dva_rezhima_form.md)
   - [✏️ Ответы к части 0](chapters/00_vvedenie/00-99_otvety.md)
