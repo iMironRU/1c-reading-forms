@@ -10,4 +10,5 @@
   - [✏️ § 0.5. Клиент и сервер: пользователь здесь, данные там](chapters/00_vvedenie/00-05_klient_i_server.md)
   - [✏️ § 0.6. Декларативность платформы: не написать действие, а задать правило](chapters/00_vvedenie/00-06_deklarativnost.md)
   - [✏️ § 0.7. Два режима форм: управляемые и обычные](chapters/00_vvedenie/00-07_dva_rezhima_form.md)
+  - [✏️ § 0.8. Связь с метаданными и с кодом: где здесь дерево, где здесь язык](chapters/00_vvedenie/00-08_derevo_i_kod.md)
   - [✏️ Ответы к части 0](chapters/00_vvedenie/00-99_otvety.md)
