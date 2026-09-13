@@ -26,4 +26,6 @@
   - [✏️ § 2.2. Конструктор формы: первое знакомство](chapters/02_anatomiya/02-02_konstruktor_formy.md)
   - [✏️ § 2.3. Редактор формы: три области и предпросмотр](chapters/02_anatomiya/02-03_redaktor_formy.md)
   - [✏️ § 2.4. Назначение формы объекту](chapters/02_anatomiya/02-04_naznachenie_formy.md)
+  - [✏️ § 2.5. Запуск в Предприятии: видим то, что собрали](chapters/02_anatomiya/02-05_zapusk_v_predpriyatii.md)
+  - [✏️ § 2.6. Чужая форма: разбор по трём областям](chapters/02_anatomiya/02-06_chuzhaya_forma.md)
   - [✏️ Ответы к части 2](chapters/02_anatomiya/02-99_otvety.md)
