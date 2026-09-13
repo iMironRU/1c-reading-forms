@@ -20,3 +20,7 @@
   - [✏️ § 1.4. Где у платформы предел: когда автоформ перестаёт хватать](chapters/01_avtoformy/01-04_gde_predel.md)
   - [✏️ § 1.5. Когда оставляем автоформу, когда делаем свою](chapters/01_avtoformy/01-05_kogda_svoya_forma.md)
   - [✏️ Ответы к части 1](chapters/01_avtoformy/01-99_otvety.md)
+
+- [Глава 2. Анатомия формы]()
+  - [✏️ § 2.1. Форма как объект конфигурации: где она живёт в дереве](chapters/02_anatomiya/02-01_forma_kak_obekt.md)
+  - [✏️ Ответы к части 2](chapters/02_anatomiya/02-99_otvety.md)
