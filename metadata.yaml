@@ -3,6 +3,7 @@
 # ─────────────────────────────────────────────
 title: "Чтение форм 1С"
 subtitle: "Поверхность системы"
+series: "Линия «Чтение 1С» · книга третья"
 author: "Мирошниченко Александр (aka iMiron)"
 author_url: "https://github.com/iMironRU"
 language: ru                  # ru | en
@@ -18,7 +19,7 @@ version: "0.1.0"
 #  ОТСЛЕЖИВАНИЕ ШАБЛОНА
 # ─────────────────────────────────────────────
 template_repo: "https://github.com/iMironRU/book-template"
-template_version: "v0.6.0"
+template_version: "v0.6.1"
 
 # ─────────────────────────────────────────────
 #  ФОРМАТЫ ВЫПУСКА
