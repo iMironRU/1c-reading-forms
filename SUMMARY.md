@@ -29,3 +29,7 @@
   - [✏️ § 2.5. Запуск в Предприятии: видим то, что собрали](chapters/02_anatomiya/02-05_zapusk_v_predpriyatii.md)
   - [✏️ § 2.6. Чужая форма: разбор по трём областям](chapters/02_anatomiya/02-06_chuzhaya_forma.md)
   - [✏️ Ответы к части 2](chapters/02_anatomiya/02-99_otvety.md)
+
+- [Глава 3. Данные формы]()
+  - [✏️ § 3.1. Реквизит объекта и реквизит формы: одно слово, два смысла](chapters/03_dannye/03-01_dva_smysla_rekvizita.md)
+  - [✏️ Ответы к части 3](chapters/03_dannye/03-99_otvety.md)
