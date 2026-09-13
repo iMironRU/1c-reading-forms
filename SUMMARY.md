@@ -18,4 +18,5 @@
   - [✏️ § 1.2. Что попадает в автогенерируемую форму: правила сборки](chapters/01_avtoformy/01-02_pravila_sborki.md)
   - [✏️ § 1.3. Виды автогенерируемых форм: список, элемент, выбор, группа](chapters/01_avtoformy/01-03_vidy_avtoform.md)
   - [✏️ § 1.4. Где у платформы предел: когда автоформ перестаёт хватать](chapters/01_avtoformy/01-04_gde_predel.md)
+  - [✏️ § 1.5. Когда оставляем автоформу, когда делаем свою](chapters/01_avtoformy/01-05_kogda_svoya_forma.md)
   - [✏️ Ответы к части 1](chapters/01_avtoformy/01-99_otvety.md)
