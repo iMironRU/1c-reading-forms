@@ -24,4 +24,5 @@
 - [Глава 2. Анатомия формы]()
   - [✏️ § 2.1. Форма как объект конфигурации: где она живёт в дереве](chapters/02_anatomiya/02-01_forma_kak_obekt.md)
   - [✏️ § 2.2. Конструктор формы: первое знакомство](chapters/02_anatomiya/02-02_konstruktor_formy.md)
+  - [✏️ § 2.3. Редактор формы: три области и предпросмотр](chapters/02_anatomiya/02-03_redaktor_formy.md)
   - [✏️ Ответы к части 2](chapters/02_anatomiya/02-99_otvety.md)
