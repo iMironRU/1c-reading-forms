@@ -34,4 +34,5 @@
   - [✏️ § 3.1. Реквизит объекта и реквизит формы: одно слово, два смысла](chapters/03_dannye/03-01_dva_smysla_rekvizita.md)
   - [✏️ § 3.2. Основной реквизит: главный предмет разговора](chapters/03_dannye/03-02_osnovnoy_rekvizit.md)
   - [✏️ § 3.3. Разворачиваем «Объект»: откуда в форме реквизиты товара](chapters/03_dannye/03-03_razvorachivaem_obekt.md)
+  - [✏️ § 3.4. Дополнительные реквизиты формы: данные помимо записи](chapters/03_dannye/03-04_dopolnitelnye_rekvizity.md)
   - [✏️ Ответы к части 3](chapters/03_dannye/03-99_otvety.md)
