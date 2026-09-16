@@ -43,4 +43,5 @@
 - [Глава 4. Элемент и данные]()
   - [✏️ § 4.1. Элемент формы: то, что пользователь видит и трогает](chapters/04_svyaz_s_dannymi/04-01_element_formy.md)
   - [✏️ § 4.2. Почему элементы не равны данным](chapters/04_svyaz_s_dannymi/04-02_element_ne_dannye.md)
+  - [✏️ § 4.3. Поле и его путь к данным](chapters/04_svyaz_s_dannymi/04-03_put_k_dannym.md)
   - [✏️ Ответы к части 4](chapters/04_svyaz_s_dannymi/04-99_otvety.md)
