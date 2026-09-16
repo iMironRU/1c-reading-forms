@@ -39,3 +39,7 @@
   - [✏️ § 3.6. Форма и запись: две жизни одних данных](chapters/03_dannye/03-06_dve_zhizni.md)
   - [✏️ § 3.7. Чужая форма: основной реквизит и всё остальное](chapters/03_dannye/03-07_chuzhaya_forma_rekvizity.md)
   - [✏️ Ответы к части 3](chapters/03_dannye/03-99_otvety.md)
+
+- [Глава 4. Элемент и данные]()
+  - [✏️ § 4.1. Элемент формы: то, что пользователь видит и трогает](chapters/04_svyaz_s_dannymi/04-01_element_formy.md)
+  - [✏️ Ответы к части 4](chapters/04_svyaz_s_dannymi/04-99_otvety.md)
