@@ -37,4 +37,5 @@
   - [✏️ § 3.4. Дополнительные реквизиты формы: данные помимо записи](chapters/03_dannye/03-04_dopolnitelnye_rekvizity.md)
   - [✏️ § 3.5. Типы реквизитов формы: простые, ссылочные, особые](chapters/03_dannye/03-05_tipy_rekvizitov.md)
   - [✏️ § 3.6. Форма и запись: две жизни одних данных](chapters/03_dannye/03-06_dve_zhizni.md)
+  - [✏️ § 3.7. Чужая форма: основной реквизит и всё остальное](chapters/03_dannye/03-07_chuzhaya_forma_rekvizity.md)
   - [✏️ Ответы к части 3](chapters/03_dannye/03-99_otvety.md)
