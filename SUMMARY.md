@@ -46,4 +46,5 @@
   - [✏️ § 4.3. Поле и его путь к данным](chapters/04_svyaz_s_dannymi/04-03_put_k_dannym.md)
   - [✏️ § 4.4. Виды полей: одно значение, разные способы показать](chapters/04_svyaz_s_dannymi/04-04_vidy_poley.md)
   - [✏️ § 4.5. Свойства элемента: видимость, доступность, заголовок, подсказка](chapters/04_svyaz_s_dannymi/04-05_svoystva_elementov.md)
+  - [✏️ § 4.6. Чужая форма: разбор полей и путей к данным](chapters/04_svyaz_s_dannymi/04-06_chuzhaya_forma_polya.md)
   - [✏️ Ответы к части 4](chapters/04_svyaz_s_dannymi/04-99_otvety.md)
