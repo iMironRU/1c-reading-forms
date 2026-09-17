@@ -48,3 +48,7 @@
   - [✏️ § 4.5. Свойства элемента: видимость, доступность, заголовок, подсказка](chapters/04_svyaz_s_dannymi/04-05_svoystva_elementov.md)
   - [✏️ § 4.6. Чужая форма: разбор полей и путей к данным](chapters/04_svyaz_s_dannymi/04-06_chuzhaya_forma_polya.md)
   - [✏️ Ответы к части 4](chapters/04_svyaz_s_dannymi/04-99_otvety.md)
+
+- [Глава 5. Композиция формы]()
+  - [✏️ § 5.1. Авторазмещение: у формы нет координат](chapters/05_kompoziciya/05-01_avtorazmeshchenie.md)
+  - [✏️ Ответы к части 5](chapters/05_kompoziciya/05-99_otvety.md)
