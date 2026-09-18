@@ -54,4 +54,5 @@
   - [✏️ § 5.2. Группы: рамка, внутри которой свой порядок](chapters/05_kompoziciya/05-02_gruppy.md)
   - [✏️ § 5.3. Страницы: форма, которую показывают по частям](chapters/05_kompoziciya/05-03_stranicy.md)
   - [✏️ § 5.4. Декорации: то, что в форме ради пользователя, а не ради данных](chapters/05_kompoziciya/05-04_dekoracii.md)
+  - [✏️ § 5.5. От дерева к скетчу и обратно](chapters/05_kompoziciya/05-05_ot_dereva_k_sketchu.md)
   - [✏️ Ответы к части 5](chapters/05_kompoziciya/05-99_otvety.md)
