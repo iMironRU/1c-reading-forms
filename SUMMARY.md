@@ -52,4 +52,5 @@
 - [Глава 5. Композиция формы]()
   - [✏️ § 5.1. Авторазмещение: у формы нет координат](chapters/05_kompoziciya/05-01_avtorazmeshchenie.md)
   - [✏️ § 5.2. Группы: рамка, внутри которой свой порядок](chapters/05_kompoziciya/05-02_gruppy.md)
+  - [✏️ § 5.3. Страницы: форма, которую показывают по частям](chapters/05_kompoziciya/05-03_stranicy.md)
   - [✏️ Ответы к части 5](chapters/05_kompoziciya/05-99_otvety.md)
