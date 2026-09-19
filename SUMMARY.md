@@ -55,4 +55,5 @@
   - [✏️ § 5.3. Страницы: форма, которую показывают по частям](chapters/05_kompoziciya/05-03_stranicy.md)
   - [✏️ § 5.4. Декорации: то, что в форме ради пользователя, а не ради данных](chapters/05_kompoziciya/05-04_dekoracii.md)
   - [✏️ § 5.5. От дерева к скетчу и обратно](chapters/05_kompoziciya/05-05_ot_dereva_k_sketchu.md)
+  - [✏️ § 5.6. Чужая форма: композиция и замысел](chapters/05_kompoziciya/05-06_chuzhaya_forma_kompoziciya.md)
   - [✏️ Ответы к части 5](chapters/05_kompoziciya/05-99_otvety.md)
