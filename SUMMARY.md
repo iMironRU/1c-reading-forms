@@ -57,3 +57,7 @@
   - [✏️ § 5.5. От дерева к скетчу и обратно](chapters/05_kompoziciya/05-05_ot_dereva_k_sketchu.md)
   - [✏️ § 5.6. Чужая форма: композиция и замысел](chapters/05_kompoziciya/05-06_chuzhaya_forma_kompoziciya.md)
   - [✏️ Ответы к части 5](chapters/05_kompoziciya/05-99_otvety.md)
+
+- [Глава 6. Списки на форме]()
+  - [✏️ § 6.1. Таблица: элемент, который показывает строки](chapters/06_spiski/06-01_tablica.md)
+  - [✏️ Ответы к части 6](chapters/06_spiski/06-99_otvety.md)
