@@ -79,6 +79,65 @@ def http_post(url, headers, body, timeout=900, retries=3):
     raise RuntimeError(last_err)
 
 
+# ── Учёт расхода OpenAI ────────────────────────────────────────────────────
+# Цены за 1 млн токенов; сверено с developers.openai.com/api/docs/pricing
+# 2026-09-19. Токены рассуждения оплачиваются как выходные.
+OPENAI_PRICES = {"gpt-5": {"in": 1.25, "cached": 0.125, "out": 10.00}}
+USAGE_LOG = REVIEWS / "usage-openai.jsonl"
+RUN_ID = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S")
+RUN_LABEL = ""
+_usage_lock = __import__("threading").Lock()
+
+
+def record_openai_usage(model, usage):
+    price = OPENAI_PRICES.get(model) or OPENAI_PRICES["gpt-5"]
+    pin = usage.get("prompt_tokens", 0)
+    cached = (usage.get("prompt_tokens_details") or {}).get("cached_tokens", 0)
+    pout = usage.get("completion_tokens", 0)
+    usd = ((pin - cached) * price["in"] + cached * price["cached"]
+           + pout * price["out"]) / 1_000_000
+    row = {"ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+           "run": RUN_ID, "label": RUN_LABEL, "model": model,
+           "in": pin, "cached": cached, "out": pout, "usd": round(usd, 4)}
+    with _usage_lock:
+        REVIEWS.mkdir(exist_ok=True)
+        with open(USAGE_LOG, "a", encoding="utf-8") as f:
+            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+
+def openai_balance_report():
+    """Расход этого прогона и остаток от пополнения.
+
+    Остаток считается по записям в .env:
+      OPENAI_BALANCE_USD   — сумма последнего пополнения, $
+      OPENAI_BALANCE_SINCE — дата пополнения, ГГГГ-ММ-ДД
+    Точного баланса API обычным ключом не отдаёт, поэтому это оценка по
+    токенам из ответов; сверять — на странице биллинга.
+    """
+    if not USAGE_LOG.exists():
+        return
+    rows = [json.loads(l) for l in USAGE_LOG.read_text().splitlines() if l.strip()]
+    run = [r for r in rows if r["run"] == RUN_ID]
+    if not run:
+        return
+    run_usd = sum(r["usd"] for r in run)
+    tin = sum(r["in"] for r in run); tout = sum(r["out"] for r in run)
+    fmt = lambda n: f"{n:,}".replace(",", " ")
+    print(f"\n→ OpenAI: {len(run)} вызов(а), вход {fmt(tin)} ток., "
+          f"выход {fmt(tout)} ток. — ≈ ${run_usd:.2f}")
+    budget = os.environ.get("OPENAI_BALANCE_USD")
+    since = os.environ.get("OPENAI_BALANCE_SINCE", "")
+    if not budget:
+        print("  Остаток не считаю: в .env нет OPENAI_BALANCE_USD.")
+        return
+    spent = sum(r["usd"] for r in rows if r["ts"][:10] >= since)
+    left = float(budget) - spent
+    share = left / float(budget) if float(budget) else 0
+    mark = "⚠ " if (left < 5 or share < 0.2) else ""
+    print(f"  {mark}С пополнения {since}: потрачено ≈ ${spent:.2f} из "
+          f"${float(budget):.2f}, осталось ≈ ${left:.2f} ({share:.0%}).")
+
+
 def call_deepseek(system_prompt, user_content):
     key = os.environ["DEEPSEEK_API_KEY"]
     body = {
@@ -113,6 +172,7 @@ def call_openai(model, system_prompt, user_content):
         body["max_tokens"] = 8000
     headers = {"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
     resp = http_post("https://api.openai.com/v1/chat/completions", headers, body)
+    record_openai_usage(model, resp.get("usage") or {})
     return resp["choices"][0]["message"]["content"]
 
 
@@ -226,6 +286,8 @@ def main():
     load_env()
 
     rel_path, label = resolve_path(args[0])
+    global RUN_LABEL
+    RUN_LABEL = label
     para_file = ROOT / rel_path
     paragraph_text = para_file.read_text()
     context = build_context(paragraph_text, f"§{label}  ({rel_path})")
@@ -281,6 +343,7 @@ def main():
         path.write_text(f"<!-- generated {stamp} -->\n\n{content}\n")
         print(f"  → {path.relative_to(ROOT)}")
 
+    openai_balance_report()
     print(
         f"\nГотово. Отчёты в {out_dir.relative_to(ROOT)}/. "
         f"Дальше — Claude собирает synthesis.md.\n"
