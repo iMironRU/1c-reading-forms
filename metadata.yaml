@@ -76,6 +76,13 @@ site_url: "https://imiron.ru/1c-reading-forms/"
 # ─────────────────────────────────────────────
 #  НОЧНЫЕ СБОРКИ
 # ─────────────────────────────────────────────
+# Песочница языка запросов: учебная база — та же, что у книги о запросах,
+# подключается по ссылке. Ссылки под запросами ставит scripts/sandbox-links.py.
+sandbox:
+  url: "https://imiron.ru/BSLexicon/query/"
+  schema_src: "https://raw.githubusercontent.com/iMironRU/1c-reading-queries/main/assets/sandbox/kanctovary.schema.yaml"
+  data_src: "https://raw.githubusercontent.com/iMironRU/1c-reading-queries/main/assets/sandbox/kanctovary.data.yaml"
+
 nightly:
   enabled: true
   branch: "main"
