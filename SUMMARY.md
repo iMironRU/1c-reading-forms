@@ -63,4 +63,5 @@
   - [✏️ § 6.2. Таблица из табличной части: товары в поступлении](chapters/06_spiski/06-02_tablichnaya_chast.md)
   - [✏️ § 6.3. Колонки таблицы: поля, которые показывают каждую строку](chapters/06_spiski/06-03_kolonki.md)
   - [✏️ § 6.4. Динамический список: таблица, которая показывает базу](chapters/06_spiski/06-04_dinamicheskiy_spisok.md)
+  - [✏️ § 6.5. Форма списка: где живёт динамический список](chapters/06_spiski/06-05_forma_spiska.md)
   - [✏️ Ответы к части 6](chapters/06_spiski/06-99_otvety.md)
