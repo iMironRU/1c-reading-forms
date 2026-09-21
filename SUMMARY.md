@@ -67,3 +67,7 @@
   - [✏️ § 6.6. Настройки списка: поля, отбор, порядок](chapters/06_spiski/06-06_nastroyki_spiska.md)
   - [✏️ § 6.7. Чужая форма: какие здесь таблицы и откуда у каждой строки](chapters/06_spiski/06-07_chuzhaya_forma_spiski.md)
   - [✏️ Ответы к части 6](chapters/06_spiski/06-99_otvety.md)
+
+- [Глава 7. Команды и кнопки]()
+  - [✏️ § 7.1. Команда: действие, которое форма предлагает сделать](chapters/07_komandy/07-01_komanda_kak_deystvie.md)
+  - [✏️ Ответы к главе 7](chapters/07_komandy/07-99_otvety.md)
