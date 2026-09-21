@@ -65,4 +65,5 @@
   - [✏️ § 6.4. Динамический список: таблица, которая показывает базу](chapters/06_spiski/06-04_dinamicheskiy_spisok.md)
   - [✏️ § 6.5. Форма списка: где живёт динамический список](chapters/06_spiski/06-05_forma_spiska.md)
   - [✏️ § 6.6. Настройки списка: поля, отбор, порядок](chapters/06_spiski/06-06_nastroyki_spiska.md)
+  - [✏️ § 6.7. Чужая форма: какие здесь таблицы и откуда у каждой строки](chapters/06_spiski/06-07_chuzhaya_forma_spiski.md)
   - [✏️ Ответы к части 6](chapters/06_spiski/06-99_otvety.md)
