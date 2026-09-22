@@ -73,4 +73,5 @@
   - [✏️ § 7.2. Три источника команд: платформа, объект, форма](chapters/07_komandy/07-02_tri_istochnika_komand.md)
   - [✏️ § 7.3. Кнопка: элемент, который предлагает команду](chapters/07_komandy/07-03_knopka.md)
   - [✏️ § 7.4. Командная панель: где собираются кнопки](chapters/07_komandy/07-04_komandnaya_panel.md)
+  - [✏️ § 7.5. Своя команда формы: «Обновить цены»](chapters/07_komandy/07-05_svoya_komanda.md)
   - [✏️ Ответы к главе 7](chapters/07_komandy/07-99_otvety.md)
