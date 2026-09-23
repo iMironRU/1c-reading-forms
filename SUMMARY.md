@@ -79,4 +79,5 @@
 
 - [Глава 8. Командный интерфейс программы]()
   - [✏️ § 8.1. Командный интерфейс: оглавление, которое ведёт к формам](chapters/08_komandnyy_interfeys/08-01_komandnyy_interfeys_konfiguracii.md)
+  - [✏️ § 8.2. Подсистемы: из чего складываются разделы](chapters/08_komandnyy_interfeys/08-02_podsistemy.md)
   - [✏️ Ответы к главе 8](chapters/08_komandnyy_interfeys/08-99_otvety.md)
