@@ -76,3 +76,7 @@
   - [✏️ § 7.5. Своя команда формы: «Обновить цены»](chapters/07_komandy/07-05_svoya_komanda.md)
   - [✏️ § 7.6. Чужая форма: каталог команд](chapters/07_komandy/07-06_chuzhaya_forma_komandy.md)
   - [✏️ Ответы к главе 7](chapters/07_komandy/07-99_otvety.md)
+
+- [Глава 8. Командный интерфейс программы]()
+  - [✏️ § 8.1. Командный интерфейс: оглавление, которое ведёт к формам](chapters/08_komandnyy_interfeys/08-01_komandnyy_interfeys_konfiguracii.md)
+  - [✏️ Ответы к главе 8](chapters/08_komandnyy_interfeys/08-99_otvety.md)
