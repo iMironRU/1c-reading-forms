@@ -82,4 +82,5 @@
   - [✏️ § 8.2. Подсистемы: из чего складываются разделы](chapters/08_komandnyy_interfeys/08-02_podsistemy.md)
   - [✏️ § 8.3. Объект в подсистеме: одна связь, два окна](chapters/08_komandnyy_interfeys/08-03_vklyuchenie_v_podsistemu.md)
   - [✏️ § 8.4. Командный интерфейс подсистемы: что видно в разделе](chapters/08_komandnyy_interfeys/08-04_komandnyy_interfeys_podsistemy.md)
+  - [✏️ § 8.5. Начальная страница: с чего начинается работа](chapters/08_komandnyy_interfeys/08-05_nachalnaya_stranica.md)
   - [✏️ Ответы к главе 8](chapters/08_komandnyy_interfeys/08-99_otvety.md)
