@@ -74,4 +74,5 @@
   - [✏️ § 7.3. Кнопка: элемент, который предлагает команду](chapters/07_komandy/07-03_knopka.md)
   - [✏️ § 7.4. Командная панель: где собираются кнопки](chapters/07_komandy/07-04_komandnaya_panel.md)
   - [✏️ § 7.5. Своя команда формы: «Обновить цены»](chapters/07_komandy/07-05_svoya_komanda.md)
+  - [✏️ § 7.6. Чужая форма: каталог команд](chapters/07_komandy/07-06_chuzhaya_forma_komandy.md)
   - [✏️ Ответы к главе 7](chapters/07_komandy/07-99_otvety.md)
