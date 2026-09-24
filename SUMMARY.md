@@ -85,3 +85,7 @@
   - [✏️ § 8.5. Начальная страница: с чего начинается работа](chapters/08_komandnyy_interfeys/08-05_nachalnaya_stranica.md)
   - [✏️ § 8.6. Главное меню: то, что даёт сама платформа](chapters/08_komandnyy_interfeys/08-06_glavnoe_menyu.md)
   - [✏️ Ответы к главе 8](chapters/08_komandnyy_interfeys/08-99_otvety.md)
+
+- [Глава 9. Особые виды форм]()
+  - [✏️ § 9.1. Форма элемента: одна запись справочника](chapters/09_osobye_formy/09-01_forma_elementa.md)
+  - [✏️ Ответы к главе 9](chapters/09_osobye_formy/09-99_otvety.md)
