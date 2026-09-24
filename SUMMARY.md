@@ -88,4 +88,5 @@
 
 - [Глава 9. Особые виды форм]()
   - [✏️ § 9.1. Форма элемента: одна запись справочника](chapters/09_osobye_formy/09-01_forma_elementa.md)
+  - [✏️ § 9.2. Форма списка: разговор о многих записях](chapters/09_osobye_formy/09-02_forma_spiska.md)
   - [✏️ Ответы к главе 9](chapters/09_osobye_formy/09-99_otvety.md)
