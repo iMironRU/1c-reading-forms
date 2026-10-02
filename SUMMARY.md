@@ -90,4 +90,5 @@
   - [✏️ § 9.1. Форма элемента: одна запись справочника](chapters/09_osobye_formy/09-01_forma_elementa.md)
   - [✏️ § 9.2. Форма списка: разговор о многих записях](chapters/09_osobye_formy/09-02_forma_spiska.md)
   - [✏️ § 9.3. Форма выбора: вернуть одно значение в поле](chapters/09_osobye_formy/09-03_forma_vybora.md)
+  - [✏️ § 9.4. Документ и справочник: одна запись, разные правила](chapters/09_osobye_formy/09-04_dokument_i_spravochnik.md)
   - [✏️ Ответы к главе 9](chapters/09_osobye_formy/09-99_otvety.md)
