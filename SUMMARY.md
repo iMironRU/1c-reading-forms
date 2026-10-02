@@ -92,4 +92,5 @@
   - [✏️ § 9.3. Форма выбора: вернуть одно значение в поле](chapters/09_osobye_formy/09-03_forma_vybora.md)
   - [✏️ § 9.4. Документ и справочник: одна запись, разные правила](chapters/09_osobye_formy/09-04_dokument_i_spravochnik.md)
   - [✏️ § 9.5. Форма отчёта: вопрос сверху, ответ снизу](chapters/09_osobye_formy/09-05_forma_otcheta.md)
+  - [✏️ § 9.6. Формы без предмета: когда главное — задача](chapters/09_osobye_formy/09-06_formy_organizatory.md)
   - [✏️ Ответы к главе 9](chapters/09_osobye_formy/09-99_otvety.md)
