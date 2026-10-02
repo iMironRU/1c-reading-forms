@@ -95,3 +95,7 @@
   - [✏️ § 9.6. Формы без предмета: когда главное — задача](chapters/09_osobye_formy/09-06_formy_organizatory.md)
   - [✏️ § 9.7. Чужая форма: полная карта](chapters/09_osobye_formy/09-07_chuzhaya_forma_karta.md)
   - [✏️ Ответы к главе 9](chapters/09_osobye_formy/09-99_otvety.md)
+
+- [Глава 10. Чтение, проектирование, путь дальше]()
+  - [✏️ § 10.1. Пять вопросов к любой форме](chapters/10_zavershenie/10-01_pyat_voprosov.md)
+  - [✏️ Ответы к главе 10](chapters/10_zavershenie/10-99_otvety.md)
