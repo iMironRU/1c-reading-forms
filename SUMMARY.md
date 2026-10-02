@@ -99,4 +99,5 @@
 - [Глава 10. Чтение, проектирование, путь дальше]()
   - [✏️ § 10.1. Пять вопросов к любой форме](chapters/10_zavershenie/10-01_pyat_voprosov.md)
   - [✏️ § 10.2. Контрольная задача: форма из рабочей системы](chapters/10_zavershenie/10-02_kontrolnaya_zadacha.md)
+  - [✏️ § 10.3. Живая система: модель и слой истории](chapters/10_zavershenie/10-03_realnye_konfiguracii.md)
   - [✏️ Ответы к главе 10](chapters/10_zavershenie/10-99_otvety.md)
