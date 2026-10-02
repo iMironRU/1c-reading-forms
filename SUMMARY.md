@@ -101,4 +101,5 @@
   - [✏️ § 10.2. Контрольная задача: форма из рабочей системы](chapters/10_zavershenie/10-02_kontrolnaya_zadacha.md)
   - [✏️ § 10.3. Живая система: модель и слой истории](chapters/10_zavershenie/10-03_realnye_konfiguracii.md)
   - [✏️ § 10.4. Своя задача: прокат велосипедов](chapters/10_zavershenie/10-04_proektirovanie.md)
+  - [✏️ § 10.5. Где здесь код: события и обработчики](chapters/10_zavershenie/10-05_gde_zdes_kod.md)
   - [✏️ Ответы к главе 10](chapters/10_zavershenie/10-99_otvety.md)
